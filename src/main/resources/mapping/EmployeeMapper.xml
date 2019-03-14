@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rails.mapper.EmployeeMapper">
+
+	<resultMap id="EmployeeMap" type="com.rails.entity.Employee">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="last_name" property="lastName" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="CHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getInfoById" parameterType="int" resultMap="EmployeeMap">
+		select * from tbl_employee where id =#{id}
+	</select>
+</mapper>

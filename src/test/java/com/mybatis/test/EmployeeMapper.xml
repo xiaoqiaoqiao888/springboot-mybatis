@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.test.EmployeeMapper">
+
+	<resultMap id="EmployeeMap" type="com.mybatis.test.Employee">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="last_name" property="lastName"
+			jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="CHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 字段不一致，起别名可以解决或者 resultMap -->
+	<select id="getInfoById" parameterType="int"
+		resultMap="EmployeeMap">
+		select * from tbl_employee where id =#{id};
+	</select>
+</mapper>
