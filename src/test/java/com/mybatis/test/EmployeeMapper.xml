@@ -2,16 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mybatis.test.EmployeeMapper">
 
-	<resultMap id="EmployeeMap" type="com.mybatis.test.Employee">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="last_name" property="lastName"
-			jdbcType="VARCHAR" />
-		<result column="gender" property="gender" jdbcType="CHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-	</resultMap>
-	<!-- 字段不一致，起别名可以解决或者 resultMap -->
+	<!-- <resultMap id="EmployeeMap" type="com.mybatis.test.Employee"> -->
+	<!-- <id column="id" property="id" jdbcType="INTEGER" /> -->
+	<!-- <result column="last_name" property="lastName" -->
+	<!-- jdbcType="VARCHAR" /> -->
+	<!-- <result column="gender" property="gender" jdbcType="CHAR" /> -->
+	<!-- <result column="email" property="email" jdbcType="VARCHAR" /> -->
+	<!-- </resultMap> -->
+	<!-- 字段不一致，起别名可以解决或者 resultMap 或者开启下划线自动转驼峰命名 -->
+
+	<!--可以起别名,默认类名小写，别名不区分大小写 -->
+	<!-- // @Alias("emp") 批量起别名时，可以用注解起别名 -->
+	<!-- databaseId可以切换不同的数据库 -->
 	<select id="getInfoById" parameterType="int"
-		resultMap="EmployeeMap">
-		select * from tbl_employee where id =#{id};
+		resultType="employee" databaseId="mysql">
+		select *
+		from tbl_employee where id
+		=#{id};
 	</select>
+
+	<insert id="addEmployee" databaseId="mysql"
+		useGeneratedKeys="true" parameterType="employee">
+		insert into tbl_employee
+		(last_name,gender,email)
+		values(#{lastName},#{gender},#{email});
+	</insert>
 </mapper>

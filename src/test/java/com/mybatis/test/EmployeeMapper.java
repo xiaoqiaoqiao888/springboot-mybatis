@@ -12,4 +12,28 @@ public interface EmployeeMapper {
 	 * @return
 	 */
 	public Employee getInfoById(Integer id);
+
+	/**
+	 * 增加Employee的方法
+	 * 
+	 * @param employee
+	 * @return
+	 */
+	public int addEmployee(Employee employee);
+
+	/**
+	 * 根据id更新Employee
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int updateEmployee(Integer id);
+
+	/**
+	 * 根据id删除Employee
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int delEmployee(Integer id);
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+// @Alias("emp")//可以用注解起别名
 public class Employee {
 	private Integer id;
 	private String lastName;
