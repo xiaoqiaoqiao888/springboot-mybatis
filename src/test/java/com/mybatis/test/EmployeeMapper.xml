@@ -14,17 +14,87 @@
 	<!--可以起别名,默认类名小写，别名不区分大小写 -->
 	<!-- // @Alias("emp") 批量起别名时，可以用注解起别名 -->
 	<!-- databaseId可以切换不同的数据库 -->
+	<!--parameterType可以省略 -->
 	<select id="getInfoById" parameterType="int"
 		resultType="employee" databaseId="mysql">
 		select *
 		from tbl_employee where id
 		=#{id};
 	</select>
+	<select id="getInfoByIdAndLastName" resultType="employee"
+		databaseId="mysql">
+		select *
+		from tbl_employee where id
+		=#{id} and
+		last_name=#{lastName};
+	</select>
 
 	<insert id="addEmployee" databaseId="mysql"
-		useGeneratedKeys="true" parameterType="employee">
-		insert into tbl_employee
+		useGeneratedKeys="true" keyProperty="id" parameterType="employee">
+		insert into
+		tbl_employee
 		(last_name,gender,email)
 		values(#{lastName},#{gender},#{email});
 	</insert>
+	<!--插入动态sql写法 -->
+	<insert id="addEmployee1" databaseId="mysql"
+		useGeneratedKeys="true" keyProperty="id" parameterType="employee">
+		insert into
+		tbl_employee
+		<trim prefix="(" suffix=")" prefixOverrides=",">
+			<if test="lastName != null">
+				last_name,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="email != null">
+				email
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="lastName != null">
+				#{lastName},
+			</if>
+			<if test="gender != null">
+				#{gender},
+			</if>
+			<if test="email != null">
+				#{email},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateEmployee" parameterType="employee">
+		update tbl_employee
+		set last_name=#{lastName},
+		gender=#{gender},email=#{email} where id
+		=#{id}
+	</update>
+	<!-- 更新操作的动态sql写法 <if test="lastName !=null and id<0">这个会报错 不能包含 < -->
+	<update id="updateEmployee1" parameterType="employee">
+		update tbl_employee
+		<set>
+			<if test="lastName !=null">
+				last_name=#{lastName},
+			</if>
+			<if test="gender !=null">
+				gender=#{gender},
+			</if>
+			<if test="email !=null">
+				email=#{email},
+			</if>
+		</set>
+		<where>
+			<if test="id!=null">
+				id=#{id}
+			</if>
+		</where>
+	</update>
+
+	<delete id="delEmployee" parameterType="java.lang.Integer">
+		delete from tbl_employee
+		where
+		id =#{id}
+	</delete>
 </mapper>
