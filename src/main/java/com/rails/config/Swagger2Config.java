@@ -23,12 +23,18 @@ public class Swagger2Config {
 
 	@Bean
 	public Docket petApi() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-				.paths(regex("/api/v1.*")).build().pathMapping("/").directModelSubstitute(LocalDate.class, String.class)
-				//
-				.genericModelSubstitutes(ResponseEntity.class).useDefaultResponseMessages(false)
-				.enableUrlTemplating(false).tags(new Tag("employee-service", "员工服务"))//
-				.apiInfo(apiInfo());
+		return new Docket(DocumentationType.SWAGGER_2)//
+				.select()//
+				.apis(RequestHandlerSelectors.any())//
+				.paths(regex("/api/v1.*"))//
+				.build()//
+				.pathMapping("/")//
+				.directModelSubstitute(LocalDate.class, String.class)//
+				.genericModelSubstitutes(ResponseEntity.class)//
+				.useDefaultResponseMessages(false)//
+				.enableUrlTemplating(false)//
+				.tags(new Tag("employee-service", "员工服务"))//
+				.apiInfo(apiInfo());//
 	}
 
 	private ApiInfo apiInfo() {
