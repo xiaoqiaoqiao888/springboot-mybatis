@@ -40,7 +40,7 @@ public class ApplicationTest {
 	public void createSpringfoxSwaggerJson() throws Exception {
 
 		String outputDir = System.getProperty("io.springfox.staticdocs.outputDir");
-		MvcResult mvcResult = this.mockMvc.perform(get("/v2/api-docs").accept(MediaType.APPLICATION_JSON))
+		MvcResult mvcResult = this.mockMvc.perform(get("/v2/api-docs").accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn();
 
 		MockHttpServletResponse response = mvcResult.getResponse();

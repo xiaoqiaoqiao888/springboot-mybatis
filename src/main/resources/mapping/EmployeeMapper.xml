@@ -4,7 +4,7 @@
 
 	<resultMap id="EmployeeMap" type="com.rails.entity.Employee">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="last_name" property="lastName" jdbcType="VARCHAR" />
+		<result column="lastName" property="lastName" jdbcType="VARCHAR" />
 		<result column="gender" property="gender" jdbcType="CHAR" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
 	</resultMap>
