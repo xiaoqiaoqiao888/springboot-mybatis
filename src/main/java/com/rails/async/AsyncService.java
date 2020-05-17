@@ -23,7 +23,7 @@ public class AsyncService {
 		retryer = RetryerBuilder.<String>newBuilder().retryIfException() // 抛出异常会进行重试
 				.retryIfResult(Predicates.equalTo(null)) // 如果接口返回的结果不符合预期,也需要重试
 				.retryIfResult(Predicates.equalTo("999999")) // 如果接口返回的结果不符合预期,也需要重试
-				.withWaitStrategy(WaitStrategies.incrementingWait(0, TimeUnit.SECONDS, 1, TimeUnit.SECONDS)) // 重试策略,
+				.withWaitStrategy(WaitStrategies.exponentialWait(1000, 120, TimeUnit.SECONDS)) // 重试策略,
 				.withStopStrategy(StopStrategies.stopAfterAttempt(8)) // 重试次数
 				.build();
 	}
