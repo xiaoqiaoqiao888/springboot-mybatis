@@ -36,7 +36,6 @@ public class AsyncService {
 				int count = 0;
 
 				@Override
-
 				public String call() throws Exception {
 
 					SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
