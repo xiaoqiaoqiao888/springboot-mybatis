@@ -23,7 +23,7 @@ public class AsyncService {
 		retryer = RetryerBuilder.<String>newBuilder().retryIfException() // 抛出异常会进行重试
 				.retryIfResult(Predicates.equalTo(null)) // 如果接口返回的结果不符合预期,也需要重试
 				.retryIfResult(Predicates.equalTo("999999")) // 如果接口返回的结果不符合预期,也需要重试
-				.withWaitStrategy(WaitStrategies.exponentialWait(1000, 120, TimeUnit.SECONDS)) // 重试策略,
+				.withWaitStrategy(WaitStrategies.fixedWait(5, TimeUnit.SECONDS)) // 重试策略,
 				.withStopStrategy(StopStrategies.stopAfterAttempt(8)) // 重试次数
 				.build();
 	}
@@ -37,7 +37,6 @@ public class AsyncService {
 
 				@Override
 				public String call() throws Exception {
-
 					SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 					Date date = new Date();
 					System.out.println("第" + count++ + "次通知，时间为：" + sf.format(date));
