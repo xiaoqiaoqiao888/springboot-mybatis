@@ -17,4 +17,4 @@ spring.jpa.properties.hibernate.dialect : org.hibernate.dialect.MySQL5Dialect
 mybatis.mapper-locations: classpath:mapping/*Mapper.xml
 mybatis.type-aliases-package: com.rails.entity
  
-logging.level.com.rails.mapper : debug
+logging.level.com.rails : debug
