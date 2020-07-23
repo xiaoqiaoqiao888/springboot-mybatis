@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class AsyncServiceTest {
 
 	@Async
-	public Future<String> hello() throws Exception {
+	public Future<String> helloTest() throws Exception {
 
 		try {
 			Thread.sleep(3000);

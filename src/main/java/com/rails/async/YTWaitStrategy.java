@@ -13,7 +13,7 @@ import com.github.rholder.retry.WaitStrategy;
 public class YTWaitStrategy implements WaitStrategy {
 
 	@Override
-	public long computeSleepTime(Attempt failedAttempt) {
+	public long computeSleepTime(@SuppressWarnings("rawtypes") Attempt failedAttempt) {
 		long number = failedAttempt.getAttemptNumber();
 		// if (number == 1) {
 		// return 5 * 1000;// 5秒

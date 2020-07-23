@@ -13,9 +13,9 @@ public class AsyncControllerTest {
 	@Autowired
 	private AsyncServiceTest asyncService;
 
-	@GetMapping("hello")
-	public String hello() throws Exception {
-		Future<String> hello = asyncService.hello();
+	@GetMapping("helloTest")
+	public String helloTest() throws Exception {
+		Future<String> hello = asyncService.helloTest();
 		return hello.get();
 	}
 }
