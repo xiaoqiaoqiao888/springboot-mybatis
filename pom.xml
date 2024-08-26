@@ -26,7 +26,7 @@
 		<asciidoctor.html.output.directory>${project.build.directory}/asciidoc/html</asciidoctor.html.output.directory>
 		<asciidoctor.pdf.output.directory>${project.build.directory}/asciidoc/pdf</asciidoctor.pdf.output.directory>
 		<swagger.input>${swagger.output.dir}/swagger.json</swagger.input>
-		<springfox.version>2.9.2</springfox.version>
+		<springfox.version>2.10.0</springfox.version>
 	</properties>
 
 	<dependencies>
